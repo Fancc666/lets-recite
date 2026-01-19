@@ -29,7 +29,10 @@ async function init() {
     if (lock || uSelect.value === '0') return;
     const url = BOOKS[Number(uSelect.value)];
     lock = true;
-    let response
+    queue = [];
+    page = 0;
+    resetBox();
+    let response;
     try {
         response = await fetch(url).then(r => r.json());
         lock = false;
@@ -39,8 +42,6 @@ async function init() {
         lock = false;
     }
     bookData = response.data;
-    queue = [];
-    page = 0;
     setRandomQuestion();
 }
 
@@ -63,6 +64,12 @@ function setRandomQuestion(direction = 0) {
     qId.innerText = queue[page];
     qQuestion.innerText = qData.question;
     qAnswer.innerHTML = handle_answer(qData.answer);
+    tts.stop();
+}
+function resetBox(){
+    qId.innerText = "--";
+    qQuestion.innerText = "加载中...";
+    qAnswer.innerHTML = "--";
     tts.stop();
 }
 
