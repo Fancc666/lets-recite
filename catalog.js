@@ -96,22 +96,35 @@ function generateBox(qid, question, answer) {
     return div;
 }
 function displayBoxes() {
+    boxC.innerHTML = "";
     for (let item of bookData) {
         boxC.appendChild(generateBox(item.id, item.question, item.answer));
     }
 }
 
-function zhankai(){
-    window.location.href = pr.set_data(window.location.href, {type: 1});
+// 实现不刷新 变url的重加载 优化体验
+function zhankai() {
+    let h = pr.set_data(window.location.href, { type: "1" });
+    history.pushState({ type: "1" }, '', h);
+    uBType = "1";
+    displayBoxes();
 }
-function shouqi(){
-    window.location.href = pr.set_data(window.location.href, {type: 0});
+function shouqi() {
+    let h = pr.set_data(window.location.href, { type: "0" });
+    history.pushState({ type: "0" }, '', h);
+    uBType = "0";
+    displayBoxes();
 }
+window.onpopstate = function (event) {
+    // console.log(event);
+    uBType = event.state?.type ?? "0";
+    displayBoxes();
+};
 
 init();
 
 // handle answer link break
-function handle_answer(text){
+function handle_answer(text) {
     return text.replaceAll(/([。；])(?![“”])/g, '$1<br />');
     // .replaceAll(/(?<!^)(?<![。；“”])\s*(\d+\.)/g, '<br />$1');
 }
