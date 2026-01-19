@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>一起背政治 | FANCC</title>
+    <link rel="stylesheet" href="https://www.565455.xyz/public/iconfont.css">
+    <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>一起背政治</h2>
+        <p>选择题库->点击加载->随机题目/目录全览</p>
+        <div>
+            <span>题库</span>
+            <select id="uSelect">
+                <option value="0">--</option>
+                <option value="1" selected>德法-zhangyv(31)</option>
+                <option value="2">德法-qvting(56)</option>
+                <option value="3">德法-sunlanying(134)</option>
+            </select>
+            <button id="uLoad">加载</button>
+        </div>
+        <p>随机一题</p>
+        <div class="box">
+            <p>#<span id="qId">--</span></p>
+            <p>问：<span id="question">--</span></p>
+            <button style="display: block;" id="uAns">查看答案</button>
+            <p id="answerContainer" style="display: none;">
+                答：
+                <span id="answer">--</span>
+            </p>
+            <span class="mic" id="mic">&#xe6b8;</span>
+        </div>
+        <div class="lr">
+            <a href="javascript:void(0)" onclick="setRandomQuestion(-1)">上一题</a>
+            <a href="javascript:void(0)" onclick="setRandomQuestion(1)">下一题</a>
+        </div>
+        <p>目录全览</p>
+        <div class="box">
+            <a href="./catalog.html?book=zhangyv">德法-zhangyv</a>
+            <a href="./catalog.html?book=qvting">德法-qvting</a>
+            <a href="./catalog.html?book=sunlanying">德法-sunlanying</a>
+        </div>
+        <div style="margin-top: 40px;text-align: center;">
+            勘误: fancc@565455.xyz<br />
+            By FANCC @ Peiyang, 2026.1 v2.1<br />
+            数据来源: kangkang, lft, 等.<br />
+            致以最崇高的敬意, 衷心的感谢.<br />
+        </div>
+    </div>
+    <script src="./defa.js?v2.1"></script>
+    <script src="./dftts.js?v2.1"></script>
+    <script src="/report/?tag=defa&inf=main"></script>
+</body>
+
+</html>
