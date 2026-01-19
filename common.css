@@ -16,6 +16,19 @@ span.mic {
     margin: 0 0 0 auto;
 }
 
+span.icon {
+    font-family: iconfont0;
+    cursor: pointer;
+    user-select: none;
+    width: fit-content;
+}
+
+a.normal {
+    color: black;
+    text-decoration: underline;
+    font-size: 1em;
+}
+
 .container {
     max-width: 650px;
     padding: 30px 0 20px 0;

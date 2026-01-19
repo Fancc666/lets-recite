@@ -38,7 +38,10 @@ tts.resetAndPlay = async function(text) {
         tts.networking = false;
     }
     tts.audio.src = `https://www.565455.xyz/projects/voice/${response.data.filepath}`;
-    await tts.resetTimePlay();
+    try {
+        await tts.resetTimePlay();
+    }
+    catch {}
     tts.networking = false;
     tts.iconState(this);
 };
