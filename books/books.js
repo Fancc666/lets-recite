@@ -10,7 +10,7 @@ const BOOKS = [
     {
         file: "jgdj.json",
         name: "建工积极分子@2026",
-        description: "25261学期思政重点"
+        description: "建工积极分子考试大纲"
     },
     {
         file: "szzy.json",

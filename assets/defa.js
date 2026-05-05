@@ -26,7 +26,14 @@ function rend_book_list() {
         const a = document.createElement("a");
         a.innerText = book.name;
         a.href = "./catalog.html?book=" + book.file;
-        bookbox.appendChild(a);
+        const span = document.createElement("span");
+        span.classList.add("des");
+        span.innerText = book.description;
+        const p = document.createElement("p");
+        p.classList.add("catabox");
+        p.appendChild(a);
+        p.appendChild(span);
+        bookbox.appendChild(p);
     })
 }
 rend_book_list();

@@ -7,13 +7,16 @@ let bookData = [];
 
 const loading = document.getElementById("loading");
 const tiku = document.getElementById("tiku");
+const intro = document.getElementById("intro");
 const boxC = document.getElementById("boxContainer");
 let uBType;
 
 async function init() {
     const BookFileName = pr.data("book") ?? "";
-    if (!pr.data("type")) {
+    if (!pr.data("type") || (pr.data("type") !== "0" && pr.data("type") !== "1")) {
         shouqi();
+    } else {
+        uBType = pr.data("type");
     }
     let findedBook = BOOKS.filter(book => book.file === BookFileName);
     if (findedBook.length === 0) {
@@ -22,6 +25,7 @@ async function init() {
     }
     findedBook = findedBook[0];
     tiku.innerText = findedBook.name;
+    intro.innerText = findedBook.description;
     try {
         let response = await fetch("./books/"+findedBook.file).then(r => r.json());
         bookData = response.data;
