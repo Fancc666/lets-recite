@@ -3,13 +3,6 @@
  * -catalog
  * 2026.1
  */
-
-const BOOKS = [
-    "--",
-    "k-sz-zy.json",
-    "k-sz-qt.json",
-    "k-sz-book.json"
-];
 let bookData = [];
 
 const loading = document.getElementById("loading");
@@ -21,6 +14,8 @@ async function init() {
     const uBName = pr.data("book") ?? "";
     uBType = pr.data("type") ?? "0";
     let request = "";
+    let showName = "";
+    const p = /^(?:\w-)*(.+?)\.json$/;
     if (uBName === "zhangyv" || uBName === "zhangyu") {
         request = BOOKS[1];
     }
@@ -30,10 +25,14 @@ async function init() {
     else if (uBName === "sunlanying") {
         request = BOOKS[3];
     }
+    else if (BOOKS.indexOf(uBName) > -1) {
+        request = uBName;
+        showName = request.match(p) ? request.match(p)[1] : uBName;
+    }
     else {
         return;
     }
-    tiku.innerText = uBName;
+    tiku.innerText = showName || uBName;
     try {
         let response = await fetch(request).then(r => r.json());
         bookData = response.data;

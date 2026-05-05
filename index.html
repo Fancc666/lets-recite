@@ -20,6 +20,7 @@
                 <option value="1" selected>德法-zhangyv(31)</option>
                 <option value="2">德法-qvting(56)</option>
                 <option value="3">德法-sunlanying(134)</option>
+                <option value="4">建工党建</option>
             </select>
             <button id="uLoad">加载</button>
         </div>
@@ -43,15 +44,21 @@
             <a href="./catalog.html?book=zhangyv">德法-zhangyv</a>
             <a href="./catalog.html?book=qvting">德法-qvting</a>
             <a href="./catalog.html?book=sunlanying">德法-sunlanying</a>
+            <a href="./catalog.html?book=sunlanying">德法-sunlanying</a>
+            <a href="./catalog.html?book=d-jgdj.json">建工党建</a>
         </div>
         <div style="margin-top: 40px;text-align: center;">
             <p>数据来源: kangkang, lft, 等.</p>
             <p>致以最崇高的敬意, 衷心的感谢.</p>
             <p>By FANCC @ Peiyang, 2026.1 v2.1</p>
-            <p><a class="normal" href="https://github.com/Fancc666/lets-recite" target="_blank"><span class="icon">&#xe717;</span>lets-recite开源于Github</a></p>
+            <p><a class="normal" href="https://github.com/Fancc666/lets-recite" target="_blank"><span
+                        class="icon">&#xe717;</span>lets-recite开源于Github</a></p>
         </div>
     </div>
-    <script src="./defa.js?v2.1"></script>
+    <script>
+        document.write("<script src='./books.js?"+String(Math.random()).slice(2)+"'></"+"script>");
+    </script>
+    <script src="./defa.js?v2.2"></script>
     <script src="./dftts.js?v2.1"></script>
     <script src="/report/?tag=defa&inf=main"></script>
 </body>

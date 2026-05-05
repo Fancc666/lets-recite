@@ -2,13 +2,6 @@
  * FANCC PROJECT
  * 2026.1
  */
-
-const BOOKS = [
-    "--",
-    "k-sz-zy.json",
-    "k-sz-qt.json",
-    "k-sz-book.json"
-];
 let bookData = [];
 
 const uLoad = document.getElementById("uLoad");
@@ -66,7 +59,7 @@ function setRandomQuestion(direction = 0) {
     qAnswer.innerHTML = handle_answer(qData.answer);
     tts.stop();
 }
-function resetBox(){
+function resetBox() {
     qId.innerText = "--";
     qQuestion.innerText = "加载中...";
     qAnswer.innerHTML = "--";
@@ -93,10 +86,10 @@ function loadAnswer(rev = false) {
 window.onload = init;
 
 const mic = document.getElementById("mic");
-mic.addEventListener("click", () => {tts.resetAndPlay.call(mic, getDataByQueue(queue[page]).answer)});
+mic.addEventListener("click", () => { tts.resetAndPlay.call(mic, getDataByQueue(queue[page]).answer) });
 
 // handle answer link break
-function handle_answer(text){
+function handle_answer(text) {
     return text.replaceAll(/([。；])(?![“”])/g, '$1<br />');
     // .replaceAll(/(?<!^)(?<![。；“”])\s*(\d+\.)/g, '<br />$1');
 }
