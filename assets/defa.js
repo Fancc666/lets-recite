@@ -11,6 +11,25 @@ const qAnswer = document.getElementById("answer");
 const qAnswerC = document.getElementById("answerContainer");
 const qId = document.getElementById("qId");
 const qBtn = document.getElementById("uAns");
+const bookbox = document.getElementById("bookbox");
+
+/***
+ * 书籍统一渲染
+ * 2026.5
+ */
+function rend_book_list() {
+    BOOKS.forEach(book => {
+        const opt = document.createElement("option");
+        opt.value = book.file;
+        opt.innerText = book.name;
+        uSelect.appendChild(opt);
+        const a = document.createElement("a");
+        a.innerText = book.name;
+        a.href = "./catalog.html?book=" + book.file;
+        bookbox.appendChild(a);
+    })
+}
+rend_book_list();
 
 let lock = false;
 
@@ -19,15 +38,18 @@ uLoad.addEventListener("click", () => {
 });
 
 async function init() {
-    if (lock || uSelect.value === '0') return;
-    const url = BOOKS[Number(uSelect.value)];
+    if (lock) return;
+    if (uSelect.value === '0') {
+        uSelect.value = BOOKS[0].file;
+    }
+    let bookFile = uSelect.value;
     lock = true;
     queue = [];
     page = 0;
     resetBox();
     let response;
     try {
-        response = await fetch(url).then(r => r.json());
+        response = await fetch("./books/"+bookFile).then(r => r.json());
         lock = false;
     }
     catch {

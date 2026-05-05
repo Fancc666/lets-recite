@@ -11,30 +11,19 @@ const boxC = document.getElementById("boxContainer");
 let uBType;
 
 async function init() {
-    const uBName = pr.data("book") ?? "";
-    uBType = pr.data("type") ?? "0";
-    let request = "";
-    let showName = "";
-    const p = /^(?:\w-)*(.+?)\.json$/;
-    if (uBName === "zhangyv" || uBName === "zhangyu") {
-        request = BOOKS[1];
+    const BookFileName = pr.data("book") ?? "";
+    if (!pr.data("type")) {
+        shouqi();
     }
-    else if (uBName === "qvting") {
-        request = BOOKS[2];
-    }
-    else if (uBName === "sunlanying") {
-        request = BOOKS[3];
-    }
-    else if (BOOKS.indexOf(uBName) > -1) {
-        request = uBName;
-        showName = request.match(p) ? request.match(p)[1] : uBName;
-    }
-    else {
+    let findedBook = BOOKS.filter(book => book.file === BookFileName);
+    if (findedBook.length === 0) {
+        tiku.innerText = "未找到此书";
         return;
     }
-    tiku.innerText = showName || uBName;
+    findedBook = findedBook[0];
+    tiku.innerText = findedBook.name;
     try {
-        let response = await fetch(request).then(r => r.json());
+        let response = await fetch("./books/"+findedBook.file).then(r => r.json());
         bookData = response.data;
     }
     catch {
@@ -45,6 +34,7 @@ async function init() {
 }
 
 /* 
+<!-- 示例结构 -->
 <div class="box">
     <p>#<span id="qId">--</span></p>
     <p>问：<span id="question">--</span></p>

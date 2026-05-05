@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>目录 | FANCC</title>
-    <link rel="stylesheet" href="https://www.565455.xyz/public/iconfont.css">
-    <link rel="stylesheet" href="./common.css?v2.1">
+    <link rel="stylesheet" href="https://cdn.happyfan.cc.cd/public/iconfont.css">
+    <link rel="stylesheet" href="./assets/common.css?v2.1">
     <script src="https://www.565455.xyz/public/params.js"></script>
 </head>
 
@@ -21,25 +21,22 @@
             <a href="javascript:void(0)" onclick="shouqi()">收起所有答案</a>
         </div>
         <div id="boxContainer"></div>
-        <!-- <div class="box">
-            <p>#<span id="qId">--</span></p>
-            <p>问：<span id="question">--</span></p>
-            <button style="display: block;" id="uAns">查看答案</button>
-            <p id="answerContainer" style="display: none;">答：<span id="answer">--</span></p>
-        </div> -->
-        <!-- <div style="margin-top: 40px;text-align: center;">
-            勘误: fancc@565455.xyz<br />
-            By FANCC @ Peiyang, 2026.1<br />
-            数据来源: kangkang, lft, 等.<br />
-            致以最崇高的敬意, 衷心的感谢.<br />
-        </div> -->
     </div>
     <script>
-        document.write("<script src='./books.js?"+String(Math.random()).slice(2)+"'></"+"script>");
+        document.write("<script src='./books/books.js?"+String(Math.random()).slice(2)+"'></"+"script>");
     </script>
-    <script src="./catalog.js?v2.2"></script>
-    <script src="./dftts.js?v2.1"></script>
-    <script src="/report/?tag=defa&inf=catalog"></script>
+    <script src="./assets/catalog.js?v2.2"></script>
+    <script src="./assets/dftts.js?v2.1"></script>
+    <script>
+        function report(inf) {
+            if (window.location.hostname !== "localhost") {
+                const s = document.createElement("script");
+                s.src = "/report/?tag=defa&inf=" + inf;
+                document.body.appendChild(s);
+            }
+        }
+        report("catalog");
+    </script>
 </body>
 
 </html>
