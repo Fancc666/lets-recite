@@ -14,9 +14,10 @@ let uBType;
 async function init() {
     const BookFileName = pr.data("book") ?? "";
     if (!pr.data("type") || (pr.data("type") !== "0" && pr.data("type") !== "1")) {
-        shouqi();
+        shouqi(true);
     } else {
-        uBType = pr.data("type");
+        if (pr.data("type") === "0" ) shouqi(true);
+        if (pr.data("type") === "1" ) zhankai(true);
     }
     let findedBook = BOOKS.filter(book => book.file === BookFileName);
     if (findedBook.length === 0) {
@@ -96,21 +97,31 @@ function displayBoxes() {
 }
 
 // 实现不刷新 变url的重加载 优化体验
-function zhankai() {
+function zhankai(replace=false) {
     let h = pr.set_data(window.location.href, { type: "1" });
-    history.pushState({ type: "1" }, '', h);
+    if (replace) {
+        // 替换而不是新增
+        history.replaceState({ type: "1" }, '', h);
+    } else {
+        history.pushState({ type: "1" }, '', h);
+    }
     uBType = "1";
     displayBoxes();
 }
-function shouqi() {
+function shouqi(replace=false) {
     let h = pr.set_data(window.location.href, { type: "0" });
-    history.pushState({ type: "0" }, '', h);
+    if (replace) {
+        // 替换而不是新增
+        history.replaceState({ type: "0" }, '', h);
+    } else {
+        history.pushState({ type: "0" }, '', h);
+    }
     uBType = "0";
     displayBoxes();
 }
 window.onpopstate = function (event) {
     // console.log(event);
-    uBType = event.state?.type ?? "0";
+    uBType = event.state?.type ?? (initOpen ? "1" : "0");
     displayBoxes();
 };
 
